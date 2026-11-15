@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tambah Seru: Kelinci vs Kerangka</title>
+<link rel="stylesheet" href="css/style.css"></head><body>
+<div class="wrap">
+ <div class="hud"><span id="hp">❤️❤️❤️</span><span id="en">Musuh ke-1</span><span id="sc">⭐ 0</span><button id="mute" class="mt" aria-label="Suara">🔊</button></div>
+ <canvas id="c" width="720" height="320"></canvas>
+ <div class="q">
+  <div class="eq" id="eq">? + ? = ?</div>
+  <div class="bar"><i id="bar"></i></div>
+  <div class="tm" id="tm"></div>
+  <div class="opts" id="opts"></div>
+ </div>
+ <div class="ov hide" id="ov"><h1>Kelinci vs Kerangka</h1><p>Jawab penjumlahan 1–10.<br>Benar: kelinci menyerang. Salah / waktu habis (20 detik): kerangka menyerang.<br>Level 1 Kerangka, 2 Golem, 3 Vampir (lalu berulang).<br>HP lawan tinggal 1? Karakter masuk mode ULTIMATE!</p><button id="go">Mulai</button></div>
+</div>
+<div id="menu"><div class="mbox land"><img id="menuImg" alt="Petualangan Kelinci"><button class="hs" data-act="start" aria-label="Mulai Petualangan" style="left:71.62%;top:45.55%;width:22.32%;height:13.21%"></button><button class="hs" data-act="hero" aria-label="Pahlawan" style="left:72.98%;top:61.06%;width:19.60%;height:7.93%"></button><button class="hs" data-act="set" aria-label="Pengaturan" style="left:72.98%;top:71.77%;width:19.60%;height:8.07%"></button><button class="hs" data-act="exit" aria-label="Keluar" style="left:72.98%;top:82.20%;width:19.60%;height:8.07%"></button></div><div class="mbox port"><img id="menuImgP" alt="Petualangan Kelinci"><button class="hs" data-act="start" aria-label="Mulai Petualangan" style="left:16.67%;top:71.80%;width:66.67%;height:6.32%"></button><button class="hs" data-act="hero" aria-label="Pahlawan" style="left:30.21%;top:79.07%;width:39.45%;height:5.60%"></button><button class="hs" data-act="set" aria-label="Pengaturan" style="left:30.21%;top:85.39%;width:39.45%;height:5.60%"></button><button class="hs" data-act="exit" aria-label="Keluar" style="left:30.21%;top:91.72%;width:39.45%;height:5.52%"></button></div></div>
+<div id="heroes" class="hide"><div class="htitle">Pengenalan Karakter</div><button class="hnav" id="hprev" aria-label="Sebelumnya">‹</button><button class="hnav" id="hnext" aria-label="Berikutnya">›</button><div class="hsl" id="hsl"><div><img id="hc0" alt="Kelinci"></div><div><img id="hc1" alt="Vampir"></div><div><img id="hc2" alt="Skeleton"></div><div><img id="hc3" alt="Golem"></div></div><div class="hdots" id="hdots"><i></i><i></i><i></i><i></i></div><button class="hback" id="hback">Kembali</button></div>
+<div id="settings" class="hide"><div class="sbox"><img id="setImg" alt="Pengaturan"><button class="hs" data-mode="mudah" aria-label="Mudah" style="left:16.40%;top:30.73%;width:35.14%;height:39.58%"></button><button class="hs" data-mode="menantang" aria-label="Menantang" style="left:54.03%;top:30.73%;width:35.58%;height:39.58%"></button><button class="hs" id="s_back" aria-label="Kembali" style="left:35.43%;top:79.43%;width:34.41%;height:8.07%"></button><button class="hs" id="s_x" aria-label="Tutup" style="left:86.38%;top:12.37%;width:9.52%;height:6.90%"></button><i class="chk" id="chk">✓</i></div></div>
+<div id="end" class="hide"><div class="ebox" id="ebox"><img id="endImg" alt=""><div class="escore" id="escore"></div><div class="ehs hide" id="eHs"><button class="hs" id="e_menu" aria-label="Menu utama" style="left:25.83%;top:84.89%;width:48.35%;height:9.97%"></button></div><div class="ebt hide" id="eBtns"><button id="e_retry">Coba lagi</button><button id="e_menu2">Menu utama</button></div></div></div>
+<div class="stage-splash-full hide" id="stageSplash">
+ <div class="splash-paint-bg"><svg class="splash-paint-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet"><g class="splat-layer-shadow"><path d="M 547.8,353.4 Q 657.5,343.1 547.8,353.4 Q 695.4,460.8 500.2,377.5 Q 553.9,459.1 487.3,419.1 Q 570.1,626.1 438.7,408.4 Q 437.4,547.7 400.3,454.8 Q 339.5,604.7 358.8,424.0 Q 287.9,492.9 300.6,423.2 Q 131.3,516.5 323.8,350.9 Q 157.0,384.7 272.5,324.6 Q 177.3,295.9 264.8,274.9 Q 98.7,176.7 319.9,250.8 Q 223.7,136.1 325.9,199.0 Q 241.2,-19.4 381.9,222.6 Q 381.1,89.1 415.7,161.2 Q 474.1,21.5 453.1,201.7 Q 533.8,114.3 515.4,192.8 Q 684.7,99.5 498.8,266.6 Q 644.2,257.8 549.7,303.1 Z" fill="var(--paint-dark)" opacity="0.75"/><circle cx="665" cy="245" r="17" fill="var(--paint-dark)"/><circle cx="715" cy="285" r="11" fill="var(--paint-dark)"/><circle cx="645" cy="145" r="13" fill="var(--paint-dark)"/><circle cx="695" cy="105" r="8" fill="var(--paint-dark)"/><circle cx="565" cy="65" r="15" fill="var(--paint-dark)"/><circle cx="495" cy="35" r="19" fill="var(--paint-dark)"/><circle cx="385" cy="20" r="13" fill="var(--paint-dark)"/><circle cx="285" cy="30" r="16" fill="var(--paint-dark)"/><circle cx="195" cy="55" r="12" fill="var(--paint-dark)"/><circle cx="125" cy="115" r="17" fill="var(--paint-dark)"/><circle cx="75" cy="185" r="13" fill="var(--paint-dark)"/><circle cx="55" cy="275" r="18" fill="var(--paint-dark)"/><circle cx="80" cy="365" r="14" fill="var(--paint-dark)"/><circle cx="125" cy="445" r="19" fill="var(--paint-dark)"/><circle cx="175" cy="515" r="11" fill="var(--paint-dark)"/><circle cx="275" cy="565" r="15" fill="var(--paint-dark)"/><circle cx="375" cy="580" r="13" fill="var(--paint-dark)"/><circle cx="485" cy="560" r="17" fill="var(--paint-dark)"/><circle cx="585" cy="515" r="12" fill="var(--paint-dark)"/><circle cx="655" cy="435" r="16" fill="var(--paint-dark)"/><circle cx="725" cy="385" r="9" fill="var(--paint-dark)"/><circle cx="225" cy="125" r="9" fill="var(--paint-dark)"/><circle cx="585" cy="205" r="10" fill="var(--paint-dark)"/><circle cx="545" cy="415" r="11" fill="var(--paint-dark)"/></g><g class="splat-layer-main"><path d="M 537.9,324.3 Q 640.0,300.0 537.9,324.3 Q 691.3,406.0 496.2,353.3 Q 557.6,423.1 489.5,394.3 Q 595.0,578.5 442.3,390.6 Q 459.5,522.2 412.2,439.5 Q 374.7,588.9 368.9,415.9 Q 311.3,490.3 314.0,422.9 Q 166.7,533.3 326.3,351.6 Q 173.4,405.7 274.4,333.6 Q 180.8,319.2 260.5,287.8 Q 90.9,217.2 309.4,257.7 Q 203.4,162.3 308.1,208.1 Q 199.2,13.3 364.1,223.0 Q 345.6,97.2 387.8,160.5 Q 424.4,21.1 428.5,193.7 Q 493.0,100.6 486.0,177.1 Q 633.3,66.7 480.1,249.0 Q 616.1,221.3 532.9,276.6 Z" fill="var(--paint-main)"/><circle cx="660" cy="240" r="16" fill="var(--paint-main)"/><circle cx="710" cy="280" r="10" fill="var(--paint-main)"/><circle cx="640" cy="140" r="12" fill="var(--paint-main)"/><circle cx="690" cy="100" r="7" fill="var(--paint-main)"/><circle cx="560" cy="60" r="14" fill="var(--paint-main)"/><circle cx="490" cy="30" r="18" fill="var(--paint-main)"/><circle cx="380" cy="15" r="12" fill="var(--paint-main)"/><circle cx="280" cy="25" r="15" fill="var(--paint-main)"/><circle cx="190" cy="50" r="11" fill="var(--paint-main)"/><circle cx="120" cy="110" r="16" fill="var(--paint-main)"/><circle cx="70" cy="180" r="12" fill="var(--paint-main)"/><circle cx="50" cy="270" r="17" fill="var(--paint-main)"/><circle cx="75" cy="360" r="13" fill="var(--paint-main)"/><circle cx="120" cy="440" r="18" fill="var(--paint-main)"/><circle cx="170" cy="510" r="10" fill="var(--paint-main)"/><circle cx="270" cy="560" r="14" fill="var(--paint-main)"/><circle cx="370" cy="575" r="12" fill="var(--paint-main)"/><circle cx="480" cy="555" r="16" fill="var(--paint-main)"/><circle cx="580" cy="510" r="11" fill="var(--paint-main)"/><circle cx="650" cy="430" r="15" fill="var(--paint-main)"/><circle cx="720" cy="380" r="8" fill="var(--paint-main)"/><circle cx="220" cy="120" r="8" fill="var(--paint-main)"/><circle cx="580" cy="200" r="9" fill="var(--paint-main)"/><circle cx="540" cy="410" r="10" fill="var(--paint-main)"/></g><g class="splat-layer-highlight"><path d="M 492.7,288.5 Q 561.0,256.1 492.7,288.5 Q 613.0,323.1 467.7,315.2 Q 521.4,355.1 469.1,345.0 Q 571.0,459.0 435.3,349.5 Q 467.2,439.6 421.5,388.4 Q 417.4,499.2 387.5,378.3 Q 358.0,439.3 349.8,391.4 Q 262.6,491.3 347.8,339.4 Q 248.2,400.3 308.6,334.5 Q 240.5,338.3 292.0,304.3 Q 161.9,279.9 321.8,275.8 Q 232.9,224.5 313.5,241.0 Q 207.7,120.1 355.2,243.1 Q 323.4,157.3 362.5,195.6 Q 367.4,91.9 396.1,212.9 Q 427.6,137.7 434.2,192.6 Q 521.4,92.7 440.8,244.1 Q 532.4,204.2 482.1,255.6 Z" fill="var(--paint-accent)" opacity="0.35"/></g></svg></div>
+ <div class="splash-content-wrap">
+  <div class="splash-paint-ribbon" id="splashRibbon">STAGE 1 SELESAI! ⭐</div>
+  <div class="splash-main-row">
+   <div class="splash-monster-container">
+    <div class="splash-monster-card">
+     <img id="splashMonsterImg" class="splash-monster-img" alt="Monster">
+     <div class="splash-monster-badge" id="splashBadge">STAGE 2</div>
+    </div>
+   </div>
+   <div class="splash-info-card">
+    <div class="splash-stage-tag" id="splashStageTag">LOKASI & MUSUH BARU</div>
+    <div class="splash-brush-banner">
+     <div class="splash-monster-name" id="splashMonsterName">GOLEM BATU RAKSASA</div>
+    </div>
+    <div class="splash-lore-box">
+     <div class="splash-lore-text" id="splashLoreText">Gurun berguncang! Waspadai tinju raksasanya!</div>
+    </div>
+    <div class="splash-bottom-bar">
+     <div class="splash-progress-dots" id="splashProgress">
+      <span class="pdot done"></span>
+      <span class="pdot active"></span>
+      <span class="pdot"></span>
+     </div>
+     <button id="splashContinueBtn" class="splash-continue-btn">LANJUTKAN ⚔️</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="vendor/three.min.js"></script>
+<script src="src/data.js"></script>
+<script src="src/game.js"></script>
+</body></html>

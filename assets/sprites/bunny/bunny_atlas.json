@@ -1,0 +1,25 @@
+{
+ "cell": [
+  151,
+  166
+ ],
+ "anchor": "bottom-center",
+ "animations": {
+  "idle_front": {
+   "frames": 4,
+   "strip": "idle_front_strip.png"
+  },
+  "idle_side": {
+   "frames": 4,
+   "strip": "idle_side_strip.png"
+  },
+  "attack": {
+   "frames": 6,
+   "strip": "attack_strip.png"
+  },
+  "hurt_die": {
+   "frames": 4,
+   "strip": "hurt_die_strip.png"
+  }
+ }
+}
